@@ -40,13 +40,13 @@ def theta_mars_from_true_anomaly(true_anomaly_earth, true_anomaly_mars):
     return np.angle(cos_theta_M + 1.j * sin_theta_M)
 
 
-def copernicus_data(series_length, N=None, delta_t=25, file_name=None, t_earth_target=None, t_mars_target=None):
+def copernicus_data(series_length, N=None, delta_t=25, fileName=None, t_earth_target=None, t_mars_target=None):
     """
     Params:
     series_length: number of samples in each time series
     N: number of training examples
     delta_t: number of days between adjacent observations in a time series
-    file_name: if given, the data is saved to a file of this name
+    fileName: if given, the data is saved to a file of this name
     t_earth_target, t_mars_target: used for plotting, do not use for data generation
     """
     delta_t = float(delta_t)
@@ -81,8 +81,8 @@ def copernicus_data(series_length, N=None, delta_t=25, file_name=None, t_earth_t
 
     result = (data, states)
 
-    if file_name is not None:
-        f = gzip.open(io.data_path + file_name + ".plk.gz", 'wb')
+    if fileName is not None:
+        f = gzip.open(io.data_path + fileName + ".plk.gz", 'wb')
         cPickle.dump(result, f, protocol=2)
         f.close()
     return result
