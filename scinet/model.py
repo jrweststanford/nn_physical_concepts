@@ -76,7 +76,8 @@ class Network(object):
         with self.graph.as_default():
             initialize_uninitialized(self.session)
 
-            for epoch_iter in tqdm_notebook(range(epoch_num)):
+            #for epoch_iter in tqdm_notebook(range(epoch_num)):
+            for epoch_iter in range(epoch_num):
                 self.tot_epochs += 1
                 current_beta = beta_fun(self.tot_epochs)
 

@@ -24,14 +24,15 @@ def stokes_eqn(Fr, St, t, x0=0.0, v0=0.0):
     C2 = x0 - C1*St
     return np.real( -Fr*St * t + C1*St * np.exp(-t/St) + C2 )
 
-def stokes_data(N, t_sample=np.linspace(0, 5, 50), Fr_interval=[-5, 5], St_interval=[0,5],
+def stokes_data(N, t_sample=np.linspace(0, 5, 50), Fr_interval=[0, 5], St_interval=[-2,2],
                     t_meas_interval=None, fileName=None):
 
     t_sample = np.array(t_sample, dtype=float)
 
     # sample in intervals
     Fr_all = (Fr_interval[1] - Fr_interval[0]) * np.random.rand(N) + Fr_interval[0]
-    St_all = (St_interval[1] - St_interval[0]) * np.random.rand(N) + St_interval[0]
+    St_log_all = (St_interval[1] - St_interval[0]) * np.random.rand(N) + St_interval[0]
+    St_all = 10**St_log_all
 
     #If measurement time not provided, create it to extrapolate
     if t_meas_interval is None:
